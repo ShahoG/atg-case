@@ -5,7 +5,8 @@ interface DropdownState {
   data: any[]; // You can define a more specific type if you know the API response structure
   loading: boolean;
   error: string | null;
-  gameDetails: any[]; // Store details of a specific game
+  gameDetails: any[]; 
+  showHorseDetailsIndex: string;// Store details of a specific game
 }
 
 // Async thunk for fetching data
@@ -41,6 +42,7 @@ const initialState: DropdownState = {
   loading: false,
   error: null,
   gameDetails: [],
+  showHorseDetailsIndex: '',
 };
 
 const dropdownSlice = createSlice({
@@ -49,6 +51,9 @@ const dropdownSlice = createSlice({
   reducers: {
     setSelectedValue(state, action: PayloadAction<string>) {
       state.selectedValue = action.payload;
+    },
+    setShowHorseDetailsIndex(state, action: PayloadAction<string>) {
+      state.showHorseDetailsIndex = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -81,6 +86,6 @@ const dropdownSlice = createSlice({
   },
 });
 
-export const { setSelectedValue } = dropdownSlice.actions;
+export const { setSelectedValue, setShowHorseDetailsIndex } = dropdownSlice.actions;
 
 export default dropdownSlice.reducer;

@@ -1,6 +1,7 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState, AppDispatch } from '../store/store';
+import { setShowHorseDetailsIndex } from '../store/dropdownSlice';
 
 interface Race {
   driver: {
@@ -9,12 +10,24 @@ interface Race {
   };
   horse: {
     name: string;
+    pedigree: {
+      father: {
+        name: string;
+      }
+    },
+    trainer: {
+      firstName: string;
+      lastName: string;
+    },
   };
   number: number;
   }
 
 const Table: React.FC = () => {
-  const { data, loading, error, gameDetails } = useSelector((state: RootState) => state.dropdown);
+  const { data, loading, error, gameDetails, showHorseDetailsIndex } = useSelector((state: RootState) => state.dropdown);
+  console.log(showHorseDetailsIndex)
+
+  const dispatch = useDispatch<AppDispatch>();
 
   if (loading) {
     return <div>Loading...</div>;
@@ -27,6 +40,11 @@ const Table: React.FC = () => {
   if (!data || data.length === 0) {
     return <div>No data available.</div>;
   }
+
+  const handleHorseClick = (index: string) => {
+    dispatch(setShowHorseDetailsIndex(index));
+    console.log(showHorseDetailsIndex)
+  };
 
   return (
 
@@ -60,15 +78,24 @@ const Table: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {(item.starts.map((item: Race, index: number) => (
-                <tr key={index}>
-                  {/* Update cells based on the actual data structure */}
-                  <td>{item.horse.name}</td>
-                  <td>{item.number}</td>
-                  <td>{item.driver.firstName} {item.driver.lastName}</td>
-                  {/* Add more cells as needed */}
-                </tr>
-              )))}
+              {(item.starts.map((item: Race, index: number) => {
+                const secondIndex = index + 'second';
+                return (
+                  <>
+                    <tr key={index} onClick={() => handleHorseClick(secondIndex)}>
+                      {/* Update cells based on the actual data structure */}
+                      <td>{item.horse.name}</td>
+                      <td>{item.number}</td>
+                      <td>{item.driver.firstName} {item.driver.lastName}</td>
+                      {/* Add more cells as needed */}
+                    </tr>
+                    {showHorseDetailsIndex === secondIndex && (<tr key={secondIndex}>
+                      <td>FATHER: {item.horse.pedigree.father.name}</td>
+                      <td>TRAINER: {item.horse.trainer.firstName} {item.horse.trainer.lastName}</td>
+                    </tr>)}
+                  </>
+                );
+              }))}
             </tbody>
           </table>
 
