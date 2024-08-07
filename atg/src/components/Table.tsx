@@ -2,6 +2,17 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 
+interface Race {
+  driver: {
+    firstName: string;
+    lastName: string;
+  };
+  horse: {
+    name: string;
+  };
+  number: number;
+  }
+
 const Table: React.FC = () => {
   const { data, loading, error, gameDetails } = useSelector((state: RootState) => state.dropdown);
 
@@ -18,28 +29,56 @@ const Table: React.FC = () => {
   }
 
   return (
-    <table>
-      <thead>
-        <tr>
-          {/* Update headers based on the actual data structure */}
-          <th>Race name</th>
-          <th>Race number</th>
-          <th>Start Time</th>
-          {/* Add more headers as needed */}
-        </tr>
-      </thead>
-      <tbody>
-        {gameDetails && (gameDetails.map((item, index) => (
-          <tr key={index}>
-            {/* Update cells based on the actual data structure */}
-            <td>{item.name}</td>
-            <td>{item.number}</td>
-            <td>{item.scheduledStartTime}</td>
-            {/* Add more cells as needed */}
-          </tr>
-        )))}
-      </tbody>
-    </table>
+
+   <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
+      {gameDetails.map((item) => (
+        <div
+          key={item.id}
+          style={{
+            border: "1px solid #ccc",
+            borderRadius: "8px",
+            boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
+            padding: "16px",
+            width: "300px",
+            margin: "10px",
+          }}
+        >
+          <h3>
+            <a href="#">
+              {item.name}
+            </a>
+          </h3>
+          
+          <table>
+            <thead>
+              <tr>
+                {/* Update headers based on the actual data structure */}
+                <th>Horse name</th>
+                <th>Start number</th>
+                <th>Driver name</th>
+                {/* Add more headers as needed */}
+              </tr>
+            </thead>
+            <tbody>
+              {(item.starts.map((item: Race, index: number) => (
+                <tr key={index}>
+                  {/* Update cells based on the actual data structure */}
+                  <td>{item.horse.name}</td>
+                  <td>{item.number}</td>
+                  <td>{item.driver.firstName} {item.driver.lastName}</td>
+                  {/* Add more cells as needed */}
+                </tr>
+              )))}
+            </tbody>
+          </table>
+
+          {/* Optionally include more detailed information or actions here */}
+        </div>
+      ))}
+      </div>
+
+
+
   );
 };
 
