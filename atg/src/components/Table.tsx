@@ -4,11 +4,13 @@ import { RootState, AppDispatch } from '../store/store';
 import { setShowHorseDetailsIndex } from '../store/dropdownSlice';
 
 interface Race {
+  id: string;
   driver: {
     firstName: string;
     lastName: string;
   };
   horse: {
+    id: string;
     name: string;
     pedigree: {
       father: {
@@ -25,8 +27,6 @@ interface Race {
 
 const Table: React.FC = () => {
   const { data, loading, error, gameDetails, showHorseDetailsIndex } = useSelector((state: RootState) => state.dropdown);
-  console.log(showHorseDetailsIndex)
-
   const dispatch = useDispatch<AppDispatch>();
 
   if (loading) {
@@ -79,7 +79,7 @@ const Table: React.FC = () => {
             </thead>
             <tbody>
               {(item.starts.map((item: Race, index: number) => {
-                const secondIndex = index + 'second';
+                const secondIndex = `${item.id}-${index}`;
                 return (
                   <>
                     <tr key={index} onClick={() => handleHorseClick(secondIndex)}>
