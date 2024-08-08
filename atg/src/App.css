@@ -1,5 +1,14 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 .App {
   text-align: center;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .App-logo {
@@ -14,11 +23,19 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.3) 1.31%, rgba(0, 0, 0, 0) 36.44%), rgb(0, 79, 159);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(255, 221, 0);
+  padding: 20px;
+  margin-bottom: 40px;
+  font-weight: bold;
+}
+
+.dropdown {
+  border: 1px solid #666;
+  padding: 8px 4px;
 }

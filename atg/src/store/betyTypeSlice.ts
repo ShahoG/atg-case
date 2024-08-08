@@ -18,6 +18,8 @@ const betTypeSlice = createSlice({
   initialState,
   reducers: {
     setSelectedValue(state, action: PayloadAction<string>) {
+      state.betData = [];
+      state.gameDetailsData = [];
       state.selectedBetType = action.payload;
     },
     setShowHorseDetailsIndex(state, action: PayloadAction<string>) {

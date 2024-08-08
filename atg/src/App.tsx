@@ -19,10 +19,9 @@ function App() {
       </header>
 
       <div>
-        <h1>Select races</h1>
+        <h1>Choose bet types</h1>
         <Dropdown
           options={dropdownOptions}
-          label="Choose bet type"
         />
         <Links />
       </div>

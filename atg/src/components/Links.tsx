@@ -26,25 +26,25 @@ const Links: React.FC = () => {
   }
 
   return (
-    <div>
-      <h2>Available Games</h2>
+    <>
+    <div className='max-w-lg px-10 py-8 mx-auto bg-white rounded-lg shadow-xl'>
+      <h2 className='text-2xl font-bold my-4'>Available Games</h2>
       <ul>
         {betData.map((item) => (
           <li key={item.id}>
-            <a href="#" onClick={() => handleLinkClick(item.id)}>
+            <a onClick={() => handleLinkClick(item.id)}>
               {item.id}
             </a>
           </li>
         ))}
       </ul>
-      {gameDetailsData.length > 0 && (
-        <div>
-          <h3>Game Details</h3>
-          <Table  />
-        </div>
-      )}
     </div>
+    {gameDetailsData.length > 0 && (
+      <Table  />
+    )}; 
+    </>
   );
+  
 };
 
 export default Links;
