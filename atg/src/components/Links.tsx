@@ -7,7 +7,7 @@ import Table from './Table/Table';
 
 const Links: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { betData: data, loading, error, gameDetailsData: gameDetails } = useSelector((state: RootState) => state.betTypes);
+  const { betData, loading, error, gameDetailsData } = useSelector((state: RootState) => state.betTypes);
 
   const handleLinkClick = (gameId: string) => {
     dispatch(fetchGameDetailsData(gameId));
@@ -21,7 +21,7 @@ const Links: React.FC = () => {
     return <div>Error: {error}</div>;
   }
 
-  if (!data || data.length === 0) {
+  if (!betData || betData.length === 0) {
     return <div>No data available.</div>;
   }
 
@@ -29,7 +29,7 @@ const Links: React.FC = () => {
     <div>
       <h2>Available Games</h2>
       <ul>
-        {data.map((item) => (
+        {betData.map((item) => (
           <li key={item.id}>
             <a href="#" onClick={() => handleLinkClick(item.id)}>
               {item.id}
@@ -37,7 +37,7 @@ const Links: React.FC = () => {
           </li>
         ))}
       </ul>
-      {gameDetails.length > 0 && (
+      {gameDetailsData.length > 0 && (
         <div>
           <h3>Game Details</h3>
           <Table  />

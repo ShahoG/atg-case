@@ -10,8 +10,19 @@
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   padding: 16px;
   margin: 10px;
+  text-align: left;
 }
 
 .card table{
   width: 100%;
+}
+
+.horseRow {
+  cursor: pointer;
+}
+
+.selectedRow {
+  background-color: #f0f0f0;
+  font-style: italic;
+  font-size: smaller;
 }

@@ -54,15 +54,21 @@ const Table: React.FC = () => {
                 const secondIndex = `${item.id}-${index}`;
                 return (
                   <>
-                    <tr key={index} onClick={() => handleHorseClick(secondIndex)}>
+                    <tr key={index} onClick={() => handleHorseClick(secondIndex)} className='horseRow'>
                       <td>{item.horse.name}</td>
                       <td>{item.number}</td>
                       <td>{item.driver.firstName} {item.driver.lastName}</td>
                     </tr>
-                    {showHorseDetailsIndex === secondIndex && (<tr key={secondIndex}>
-                      <td>FATHER: {item.horse.pedigree.father.name}</td>
-                      <td>TRAINER: {item.horse.trainer.firstName} {item.horse.trainer.lastName}</td>
-                    </tr>)}
+                    {showHorseDetailsIndex === secondIndex && (
+                    <>
+                      <tr key={secondIndex} className='selectedRow'>
+                        <td>FATHER: {item.horse.pedigree.father.name}<br></br>TRAINER: {item.horse.trainer.firstName} {item.horse.trainer.lastName} </td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td> {/* Empty row for visibility */}
+                      </tr>
+                    </>
+                  )}
                   </>
                 );
               }))}
