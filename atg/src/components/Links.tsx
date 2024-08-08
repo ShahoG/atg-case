@@ -2,15 +2,15 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../store/store';
-import { fetchGameDetails } from '../store/dropdownSlice';
-import Table from './Table';
+import { fetchGameDetailsData } from '../store/thunks';
+import Table from './Table/Table';
 
 const Links: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { data, loading, error, gameDetails } = useSelector((state: RootState) => state.dropdown);
+  const { betData: data, loading, error, gameDetailsData: gameDetails } = useSelector((state: RootState) => state.betTypes);
 
   const handleLinkClick = (gameId: string) => {
-    dispatch(fetchGameDetails(gameId));
+    dispatch(fetchGameDetailsData(gameId));
   };
 
   if (loading) {
@@ -32,7 +32,7 @@ const Links: React.FC = () => {
         {data.map((item) => (
           <li key={item.id}>
             <a href="#" onClick={() => handleLinkClick(item.id)}>
-              ({item.id})
+              {item.id}
             </a>
           </li>
         ))}

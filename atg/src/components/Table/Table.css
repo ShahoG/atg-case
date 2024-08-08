@@ -1,0 +1,17 @@
+.cardGrid {
+  display: flex;
+  flex-flow: column;
+  gap: 20px ;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding: 16px;
+  margin: 10px;
+}
+
+.card table{
+  width: 100%;
+}

@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import dropdownReducer from './dropdownSlice';
+import betTypesReducer from './betyTypeSlice';
 
 const store = configureStore({
   reducer: {
-    dropdown: dropdownReducer,
+    betTypes: betTypesReducer,
   },
 });
 

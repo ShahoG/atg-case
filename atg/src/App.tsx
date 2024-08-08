@@ -1,6 +1,5 @@
 import './App.css';
 import Dropdown from './components/Dropdown';
-import Table from './components/Table';
 import Links from './components/Links';
 
 function App() {
