@@ -23,7 +23,6 @@ const Links: React.FC = () => {
     return <div>Error: {error}</div>;
   }
 
-
   if (
       (
         (!betData.upcoming || betData.upcoming.length === 0 )
@@ -68,10 +67,6 @@ const Links: React.FC = () => {
       <Table  />
     </> 
   );
-
-
-  
-  
 };
 
 export default Links;

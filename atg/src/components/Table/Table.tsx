@@ -7,7 +7,7 @@ import './Table.css';
 
 const formatTimestamp = (timestamp: string): string => {
   const date = new Date(timestamp);
-  return date.toLocaleString(); // Customize the format as needed
+  return date.toLocaleString();
 };
 
 const Table: React.FC = () => {
@@ -32,12 +32,10 @@ const Table: React.FC = () => {
       dispatch(setShowHorseDetailsIndex(index));
   };
 
-  
-
   return (
     <>
     {gameDetailsData.length > 0 && 
-   <div className='display-flex grid gap-6'>
+    <div className='display-flex grid gap-6'>
     <h3 className='text-2xl font-bold mt-12'>Game Races for: {gameSelected}</h3>
     {gameDetailsData.map((item) => (
       
