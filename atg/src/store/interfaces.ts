@@ -1,5 +1,11 @@
+interface BetDataDetails {
+  id: string;
+}
+
 interface BetData {
   id: string;
+  upcoming: BetDataDetails[];
+  results: BetDataDetails[];
 }
 
 interface GameDetailsData {
@@ -32,7 +38,7 @@ export interface Race {
 
 export interface State {
   selectedBetType: string;
-  betData: BetData[];
+  betData: BetData;
   gameDetailsData: GameDetailsData[];
   gameSelected: string;
   showHorseDetailsIndex: string;

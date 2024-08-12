@@ -31,7 +31,7 @@ const Table: React.FC = () => {
     <>
     {gameDetailsData.length > 0 && 
    <div className='display-flex grid gap-6'>
-    <h3 className='text-2xl font-bold mt-12'>Game Races</h3>
+    <h3 className='text-2xl font-bold mt-12'>Game Races for: {gameSelected}</h3>
     {gameDetailsData.map((item) => (
       
         <div

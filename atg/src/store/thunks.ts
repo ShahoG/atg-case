@@ -8,7 +8,7 @@ export const fetchBetTypeData = createAsyncThunk(
       throw new Error('Failed to fetch bet type data');
     }
     const data = await response.json();
-    return data.upcoming;
+    return data;
   }
 );
 

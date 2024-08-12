@@ -15,11 +15,10 @@ const Dropdown: React.FC<DropdownProps> = ({ options, label }) => {
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
+    dispatch(setGameSelected(''));
     dispatch(setSelectedValue(value));
     if (value) {
       dispatch(fetchBetTypeData(value));
-    }else {
-      dispatch(setGameSelected(''));
     }
   };
 

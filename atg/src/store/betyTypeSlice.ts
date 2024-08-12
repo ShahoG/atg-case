@@ -6,7 +6,11 @@ import { State } from './interfaces';
 
 const initialState: State = {
   selectedBetType: '',
-  betData: [],
+  betData: {
+    id: '',
+    upcoming: [],
+    results: [],
+  },
   gameDetailsData: [],
   showHorseDetailsIndex: '',
   gameSelected: '',
@@ -19,7 +23,11 @@ const betTypeSlice = createSlice({
   initialState,
   reducers: {
     setSelectedValue(state, action: PayloadAction<string>) {
-      state.betData = [];
+      state.betData = {
+        id: '',
+        upcoming: [],
+        results: [],
+      };
       state.gameDetailsData = [];
       state.selectedBetType = action.payload;
     },

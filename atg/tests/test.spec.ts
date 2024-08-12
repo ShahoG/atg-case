@@ -158,7 +158,6 @@ test.describe('Happy path', () => {
 test.describe('Error tests', () => {
 
   test('No data for bet type', async ({ page }) => {
-    await page.locator('#dropdown').selectOption('V86');
 
     // Mocks
     await page.route('https://www.atg.se/services/racinginfo/v1/api/products/V86', async route => {
@@ -169,6 +168,7 @@ test.describe('Error tests', () => {
       await route.fulfill({ json });
     });
 
+    await page.locator('#dropdown').selectOption('V86');
     await expect(page.getByText('No data available for bet type')).toBeVisible();
   });
 

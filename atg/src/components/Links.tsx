@@ -24,17 +24,38 @@ const Links: React.FC = () => {
   }
 
 
-  if ((!betData || betData.length === 0) && selectedBetType.length > 0) {
+  if (
+      (
+        (!betData.upcoming || betData.upcoming.length === 0 )
+        &&
+        (!betData.results || betData.results.length === 0 )
+      ) 
+      && selectedBetType.length > 0) {
     return <div>No data available for bet type</div>;
   }
 
   return (
     <>
-      {betData.length > 0 && 
+      {betData.upcoming?.length > 0 && 
         <div className='max-w-lg px-10 py-8 mx-auto bg-white rounded-lg shadow-xl'>
-        <h2 className='text-2xl font-bold my-4'>Available Games</h2>
+        <h2 className='text-2xl font-bold my-4'>Available upcoming games</h2>
           <ul>
-            {betData.map((item) => (
+            {betData.upcoming.map((item) => (
+              <li key={item.id}>
+                <a onClick={() => handleLinkClick(item.id)}>
+                  {item.id}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      }
+
+      {betData.results?.length > 0 && 
+        <div className='max-w-lg px-10 py-8 mx-auto bg-white rounded-lg shadow-xl'>
+        <h2 className='text-2xl font-bold my-4'>Previous results</h2>
+          <ul>
+            {betData.results.map((item) => (
               <li key={item.id}>
                 <a onClick={() => handleLinkClick(item.id)}>
                   {item.id}
