@@ -5,6 +5,11 @@ import { setShowHorseDetailsIndex } from '../../store/betyTypeSlice';
 import { Race } from '../../store/interfaces';
 import './Table.css';
 
+const formatTimestamp = (timestamp: string): string => {
+  const date = new Date(timestamp);
+  return date.toLocaleString(); // Customize the format as needed
+};
+
 const Table: React.FC = () => {
   const { loading, error, gameDetailsData, showHorseDetailsIndex, gameSelected } = useSelector((state: RootState) => state.betTypes);
   const dispatch = useDispatch<AppDispatch>();
@@ -27,6 +32,8 @@ const Table: React.FC = () => {
       dispatch(setShowHorseDetailsIndex(index));
   };
 
+  
+
   return (
     <>
     {gameDetailsData.length > 0 && 
@@ -40,7 +47,7 @@ const Table: React.FC = () => {
         >
           
           <h4 className='text-xl font-bold my-4'>
-            {item.name}
+          {item.number} - {item.name} - Start: {formatTimestamp(item.startTime)}
           </h4>
           
           <table className='font-normal text-gray-700 min-w-full text-left '>
@@ -65,8 +72,8 @@ const Table: React.FC = () => {
                     <>
                       <tr key={secondIndex} className='selectedRow'>
                         <td>
-                          FATHER:<br />{item.horse.pedigree.father.name}<br />
-                          TRAINER:<br />{item.horse.trainer.firstName} {item.horse.trainer.lastName}
+                          TRAINER:<br />{item.horse.trainer.firstName} {item.horse.trainer.lastName}<br />
+                          FATHER:<br />{item.horse.pedigree.father.name}
                         </td>
                       </tr>
                       <tr>
@@ -88,3 +95,4 @@ const Table: React.FC = () => {
 };
 
 export default Table;
+export { formatTimestamp };

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../store/store';
 import { fetchGameDetailsData } from '../store/thunks';
 import { setGameSelected } from '../store/betyTypeSlice';
-import Table from './Table/Table';
+import Table, { formatTimestamp } from './Table/Table';
 
 const Links: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -43,7 +43,7 @@ const Links: React.FC = () => {
             {betData.upcoming.map((item) => (
               <li key={item.id}>
                 <a onClick={() => handleLinkClick(item.id)}>
-                  {item.id}
+                  {item.id} - Start: {formatTimestamp(item.startTime)}
                 </a>
               </li>
             ))}
@@ -58,7 +58,7 @@ const Links: React.FC = () => {
             {betData.results.map((item) => (
               <li key={item.id}>
                 <a onClick={() => handleLinkClick(item.id)}>
-                  {item.id}
+                  {item.id} - Start: {formatTimestamp (item.startTime)}
                 </a>
               </li>
             ))}

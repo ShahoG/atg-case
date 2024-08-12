@@ -1,5 +1,6 @@
 interface BetDataDetails {
   id: string;
+  startTime: string;
 }
 
 interface BetData {
@@ -11,6 +12,8 @@ interface BetData {
 interface GameDetailsData {
   id: string;
   name: string;
+  startTime: string;
+  number: number;
   starts: Race[];
 }
 
