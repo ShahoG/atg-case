@@ -6,7 +6,7 @@ import { Race } from '../../store/interfaces';
 import './Table.css';
 
 const Table: React.FC = () => {
-  const { loading, error, gameDetailsData, showHorseDetailsIndex } = useSelector((state: RootState) => state.betTypes);
+  const { loading, error, gameDetailsData, showHorseDetailsIndex, gameSelected } = useSelector((state: RootState) => state.betTypes);
   const dispatch = useDispatch<AppDispatch>();
 
   if (loading) {
@@ -17,7 +17,7 @@ const Table: React.FC = () => {
     return <div>Error: {error}</div>;
   }
 
-  if (!gameDetailsData || gameDetailsData.length === 0) {
+  if (gameSelected.length > 0 &&  (!gameDetailsData || gameDetailsData.length === 0)) {
     return <div>No data available for game</div>;
   }
 
@@ -28,14 +28,17 @@ const Table: React.FC = () => {
   };
 
   return (
-
+    <>
+    {gameDetailsData.length > 0 && 
    <div className='display-flex grid gap-6'>
-    <h3 className='text-xl font-bold mt-8'>Game Races</h3>
-      {gameDetailsData.map((item) => (
+    <h3 className='text-2xl font-bold mt-12'>Game Races</h3>
+    {gameDetailsData.map((item) => (
+      
         <div
           key={item.id}
           className='max-w-lg px-10 py-8 mx-auto bg-white rounded-lg shadow-xl'
         >
+          
           <h4 className='text-xl font-bold my-4'>
             {item.name}
           </h4>
@@ -79,9 +82,8 @@ const Table: React.FC = () => {
         </div>
       ))}
       </div>
-
-
-
+    }
+    </>
   );
 };
 

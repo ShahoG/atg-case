@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch  } from '../store/store';
-import { setSelectedValue } from '../store/betyTypeSlice';
+import { setSelectedValue, setGameSelected } from '../store/betyTypeSlice';
 import { fetchBetTypeData } from '../store/thunks';
 
 interface DropdownProps {
@@ -18,6 +18,8 @@ const Dropdown: React.FC<DropdownProps> = ({ options, label }) => {
     dispatch(setSelectedValue(value));
     if (value) {
       dispatch(fetchBetTypeData(value));
+    }else {
+      dispatch(setGameSelected(''));
     }
   };
 

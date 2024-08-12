@@ -9,6 +9,7 @@ const initialState: State = {
   betData: [],
   gameDetailsData: [],
   showHorseDetailsIndex: '',
+  gameSelected: '',
   loading: false,
   error: null,
 };
@@ -25,6 +26,9 @@ const betTypeSlice = createSlice({
     setShowHorseDetailsIndex(state, action: PayloadAction<string>) {
       state.showHorseDetailsIndex = action.payload;
     },
+    setGameSelected(state, action: PayloadAction<string>) {
+      state.gameSelected = action.payload;
+    },
   },
   extraReducers: (builder) => {
     betTypesCases(builder);
@@ -33,6 +37,6 @@ const betTypeSlice = createSlice({
   },
 });
 
-export const { setSelectedValue, setShowHorseDetailsIndex } = betTypeSlice.actions;
+export const { setSelectedValue, setShowHorseDetailsIndex, setGameSelected } = betTypeSlice.actions;
 
 export default betTypeSlice.reducer;

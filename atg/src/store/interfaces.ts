@@ -34,6 +34,7 @@ export interface State {
   selectedBetType: string;
   betData: BetData[];
   gameDetailsData: GameDetailsData[];
+  gameSelected: string;
   showHorseDetailsIndex: string;
   loading: boolean;
   error: string | null;
