@@ -11,7 +11,7 @@ test('has title', async ({ page }) => {
 test('Select bet type, select game & show details', async ({ page }) => {
 
    // Mocks
-   await page.route('https://www.atg.se/services/racinginfo/v1/api/products/V75', async route => {
+  await page.route('https://www.atg.se/services/racinginfo/v1/api/products/V75', async route => {
     const json = {
       upcoming: [
         { 
@@ -54,7 +54,7 @@ test('Select bet type, select game & show details', async ({ page }) => {
                 firstName: "Johan",
                 lastName: "Untersteiner",
               },
-          },
+            },
           ],  
         },
       ],
@@ -73,16 +73,19 @@ test('Select bet type, select game & show details', async ({ page }) => {
   await expect(page.getByText('PureBallast')).toBeVisible();
   await expect(page.getByText('FATHER')).toBeVisible();
   await expect(page.getByText('Shaho')).toBeVisible();
-
-
 });
 
-// test('get started link', async ({ page }) => {
-//   await page.goto('https://playwright.dev/');
+test('No data for bet type', async ({ page }) => {
+  await page.locator('#dropdown').selectOption('V86');
 
-//   // Click the get started link.
-//   await page.getByRole('link', { name: 'Get started' }).click();
+  // Mocks
+  await page.route('https://www.atg.se/services/racinginfo/v1/api/products/V86', async route => {
+    const json = {
+      upcoming: [],
+    }
 
-//   // Expects page to have a heading with the name of Installation.
-//   await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
-// });
+    await route.fulfill({ json });
+  });
+
+  await expect(page.getByText('No data available for bet type')).toBeVisible();
+});

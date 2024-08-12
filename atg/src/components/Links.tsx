@@ -22,7 +22,7 @@ const Links: React.FC = () => {
   }
 
   if (!betData || betData.length === 0) {
-    return <div>No data available.</div>;
+    return <div>No data available for bet type</div>;
   }
 
   return (
@@ -41,7 +41,7 @@ const Links: React.FC = () => {
     </div>
     {gameDetailsData.length > 0 && (
       <Table  />
-    )}; 
+    )}
     </>
   );
   

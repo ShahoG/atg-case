@@ -6,7 +6,7 @@ import { Race } from '../../store/interfaces';
 import './Table.css';
 
 const Table: React.FC = () => {
-  const { betData, loading, error, gameDetailsData, showHorseDetailsIndex } = useSelector((state: RootState) => state.betTypes);
+  const { loading, error, gameDetailsData, showHorseDetailsIndex } = useSelector((state: RootState) => state.betTypes);
   const dispatch = useDispatch<AppDispatch>();
 
   if (loading) {
@@ -17,8 +17,8 @@ const Table: React.FC = () => {
     return <div>Error: {error}</div>;
   }
 
-  if (!betData || betData.length === 0) {
-    return <div>No data available.</div>;
+  if (!gameDetailsData || gameDetailsData.length === 0) {
+    return <div>No data available for game</div>;
   }
 
   const handleHorseClick = (index: string) => {
